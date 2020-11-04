@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app">
+        <p>sayHi() : {{ sayHi() }}</p>
+    </div>
+
+    <script>
+    // sayHi関数から自分のインスタンス(今回の場合はmessageプロパティ)にアクセスする
+        new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!",
+            },
+            methods: {
+                sayHi: function() {
+                    // thisをつける
+                    return this.message;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

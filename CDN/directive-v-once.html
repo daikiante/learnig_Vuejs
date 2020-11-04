@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app">
+        <!-- v-once : 一度描画したら変更されない -->
+        <p v-once>{{ message }}</p>
+        <p>{{ sayHi() }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!",
+            },
+            methods: {
+                sayHi: function() {
+                    // messageプロパティを書き換えてからreturnでHiを返す
+                    this.message = "Hello Vue.js";
+                    return "Hi"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

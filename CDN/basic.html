@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初めてのVue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app">
+        <p>app1 : {{ message }}</p>
+        <button v-on:click="reverseMessage">メッセージ反転</button>
+    </div>
+
+    <!-- dataメソッド : Vuejsに対してこのデータ(return)を返す -->
+    <script>
+
+        new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!"
+            },
+            methods: {
+                reverseMessage: function() {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

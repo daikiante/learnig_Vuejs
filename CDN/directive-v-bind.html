@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app">
+        <!-- v-bind : 引数(属性)を:で指定する -->
+        <a v-bind:href="url">Google</a>
+
+        <!-- v-bind : 省略できる -->
+        <a :href="url">Google</a>
+
+        <!-- v-bind : カギカッコで囲うと動的に扱える -->
+        <a :[attribute]="url">Google</a>
+
+        <!-- v-bind : オブジェクトのように扱える -->
+        <a v-bind="{href: urlTwitter, id: number}">Twitter</a>
+
+        <!-- v-bind : オブジェクトのように扱える -->
+        <a v-bind="twitterObject">Twitter</a>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                url: "https://google.com",
+                urlTwitter: "https://twitter.com",
+                number: 31,
+                attribute: "href",
+                twitterObject: {
+                    href: "https://twitter.com",
+                    id: 31
+                }
+            }
+        })
+    </script>
+</body>
+</html>
