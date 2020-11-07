@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button v-on:click="countUp(3)">カウントアップ</button>
+
+        <!-- イベントオブジェクトを取得するとき、他の引数が存在する場合は$をつける -->
+        <p v-on:mousemove="changeMousePotision($event, 3)">マウスを載せてください</p>
+        <p>X : {{ x }}</p>
+        <p>Y : {{ y }}</p>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 0,
+                x: 0,
+                y: 0
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+                changeMousePotision: function(event, divideNumber) {
+                    this.x += event.clientX * divideNumber;
+                    this.y += event.clientY * divideNumber;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

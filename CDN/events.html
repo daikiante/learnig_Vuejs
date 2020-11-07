@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- イベントオブジェクトの取得 -->
+    <div id="app">
+        <!-- マウスがpタグの上で動いたとき、changeMousePotisionにイベントの属性が渡されている。イベントの属性(clientX, clientYを表示させている) -->
+        <p v-on:mousemove="changeMousePotision">マウスを載せてください</p>
+        <p>X : {{ x }}</p>
+        <p>Y : {{ y }}</p>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                changeMousePotision: function(event) {
+                    this.x += event.clientX;
+                    this.y += event.clientY;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

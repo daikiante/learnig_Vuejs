@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <!-- v-on : 何がされたときに発火するか指定(今回はクリック) -->
+        <button v-on:click="number += 1">カウントアップ(直接)</button>
+
+        <!-- 関数で指定 -->
+        <button v-on:click="countUp">カウントアップ(関数)</button>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 0
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                countUp: function() {
+                    this.number += 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>
