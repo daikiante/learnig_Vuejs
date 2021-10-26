@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>this</title>
+    <title>Vue.js</title>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -17,7 +17,6 @@
         <p>X : {{ x }}</p>
         <p>Y : {{ y }}</p>
     </div>
-
 
     <script>
         new Vue({
@@ -33,8 +32,8 @@
                     this.number += 1 * times
                 },
                 changeMousePotision: function(event, divideNumber) {
-                    this.x += event.clientX * divideNumber;
-                    this.y += event.clientY * divideNumber;
+                    this.x += event.clientX / divideNumber;
+                    this.y += event.clientY / divideNumber;
                 }
             }
         })

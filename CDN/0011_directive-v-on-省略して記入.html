@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <!-- @で指定(省略できる) -->
+        <button @click="countUp(3)">カウントアップ</button>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 0,
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+            }
+        })
+
+        /*
+        Vue.jsの修飾子とは
+        @clickなどのイベントに付くドット(.)でつなげた修飾子。
+        例えばクリックイベントを1回だけ有効にしたい場合は、修飾子を使用しない場合は以下のようになるが。
+
+        // <button @click="onClick">click!</button>
+        new Vue({
+        el: '#app',
+        data: {
+            isClick: false
+        },
+        methods: {
+            onClick() {
+            if (!this.isClick) {
+                alert('Hello world!')
+                this.isClick = true
+            }
+            }
+        }
+        })
+
+        Vue.jsの修飾子を使用する場合は@clickに.onceを使用するだけで実装できる。
+        // <button @click.once="onClick">click!</button>
+        new Vue({
+        el: '#app',
+        methods: {
+            onClick() {
+            alert('Hello world!')
+            }
+        }
+        })
+        */
+    </script>
+</body>
+</html>

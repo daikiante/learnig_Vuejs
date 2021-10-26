@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button v-on:click="countUp(3)">カウントアップ</button>
+
+        <!-- noEvent関数から指定 -->
+        <p v-on:mousemove="changeMousePotision($event, 3)">関数から指定 : マウスを載せてください
+            <span v-on:mousemove="noEvent">反応しないでください</span>
+        </p>
+        <p>X : {{ x }}</p>
+        <p>Y : {{ y }}</p>
+
+
+        <!-- キー修飾子 -->
+        <!-- エンターキーを押して、離した瞬間にイベントが発火 -->
+        <input type="text" v-on:keyup.enter="myAlert" placeholder="エンターキーが反応">
+        <input type="text" v-on:keyup.space.enter="myAlert" placeholder="エンターとスペースが反応">
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                number: 0,
+                x: 0,
+                y: 0
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+                changeMousePotision: function(event, divideNumber) {
+                    this.x += event.clientX / divideNumber;
+                    this.y += event.clientY / divideNumber;
+                },
+                myAlert: function() {
+                    alert('アラート！！！')
+                }
+            }
+        })
+
+        /*
+        Vue.jsの修飾子とは
+        @clickなどのイベントに付くドット(.)でつなげた修飾子。
+        例えばクリックイベントを1回だけ有効にしたい場合は、修飾子を使用しない場合は以下のようになるが。
+
+        // <button @click="onClick">click!</button>
+        new Vue({
+        el: '#app',
+        data: {
+            isClick: false
+        },
+        methods: {
+            onClick() {
+            if (!this.isClick) {
+                alert('Hello world!')
+                this.isClick = true
+            }
+            }
+        }
+        })
+
+        Vue.jsの修飾子を使用する場合は@clickに.onceを使用するだけで実装できる。
+        // <button @click.once="onClick">click!</button>
+        new Vue({
+        el: '#app',
+        methods: {
+            onClick() {
+            alert('Hello world!')
+            }
+        }
+        })
+        */
+    </script>
+</body>
+</html>

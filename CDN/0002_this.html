@@ -3,34 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>テンプレート構文</title>
+    <title>Vue.js</title>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <div id="app">
-        <p>message : {{ message }}</p>
-        <p>number : {{ number + 6 }}</p>
-        <p>ok : {{ ok ? "YES" : "NO" }}</p>
         <p>sayHi() : {{ sayHi() }}</p>
     </div>
 
-    <!-- dataメソッド : Vuejsに対してこのデータ(return)を返す -->
     <script>
-
+    // sayHi関数から自分のインスタンス(今回の場合はmessageプロパティ)にアクセスする
         new Vue({
             el: "#app",
             data: {
                 message: "Hello World!",
-                number: 3,
-                ok: true
             },
             methods: {
                 sayHi: function() {
-                    return 'Hi';
+                    // this : インスタンス内で他のインスタンスにアクセスする際に必ずつける
+                    // 他のインスタンスにアクセスするのでthisをつける
+                    return this.message;
                 }
             }
         })
     </script>
-
 </body>
 </html>

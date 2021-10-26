@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <!--
+        v-modelとは : 双方向でデータがバインディングされているvue.jsの機能
+        ・今までのv-onはdataからhtmlのみの一方方向だった 
+        ・動的に変化する
+        -->
+        <input type="text" v-model='message'>
+        <p>message : {{ message }}</p>
+        <p>↑動的に変化する</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                message: 'こんにちは',
+            },
+            // methods : 関数を保持するブロック
+            methods: {
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+            }
+        })
+
+    </script>
+</body>
+</html>
