@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!-- v-bind:(:のみでも可)を使って式を書く. ハイフンは文字列として与えるため''をつけている -->
+    <h1 v-bind:class="{red: true, 'bg-blue':false}">Hello</h1>
+
+    <!-- 動的 -->
+    <h1 :class="classObject">Hello</h1>
+
+    <!-- dataプロパティも参照できる -->
+    <h1 :class="{red: isActive, 'bg-blue': !isActive}">Hello</h1>
+
+    <!-- 配列で指定 -->
+    <h1 :class="[{red: isActive}, bg]">Hello</h1>
+
+
+    <!-- sytleに指定 -->
+    <!-- 式で書く場合 -->
+    <h1 :style="{color: textColor, 'background-color': bgColor}">hello</h1>
+
+    <!-- オブジェクトで書く場合 -->
+    <h1 :style="styleObjects">hello</h1>
+
+    <!-- 配列で書く場合 -->
+    <h1 :style="[styleObjects, baseStyles]">hello</h1>
+    <button @click='isActive = !isActive'>切り替えスイッチ</button>
+</div>
+
+<script>
+    /*
+    クラスをデータにバインディング(紐付け)する方法１
+    オブジェクトを渡して真偽値で判断→動的に変化させる
+    */
+    new Vue({
+        el: "#app",
+        data: {
+            isActive: true,
+            color: 'red',
+            bg: 'bg-blue',
+
+            textColor: 'red',
+            bgColor: 'blue',
+
+            styleObjects: {
+                color: 'red',
+                'background-color': 'blue'
+            },
+            baseStyles: {
+                fontSize: '60px'
+            }
+
+        },
+        computed: {
+            classObject: function() {
+            return {
+                red: this.isActive,
+                'bg-blue': !this.isActive
+                }
+            }
+        }
+    })
+
+</script>
+
+<style>
+.red {
+    color: red;
+}
+.bg-blue {
+    background-color: blue;
+}
+</style>
+</body>
+</html>

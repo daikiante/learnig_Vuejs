@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="fruit in fruits">{{ fruit }}</li>
+        <hr>
+    </ul>
+
+    <ul>
+        <!-- 第二引数にインデックスを取ることができる -->
+        <li v-for="(fruit, index) in fruits">index : {{ index }}, 名前 : {{ fruit }}</li>
+        <hr>
+    </ul>
+
+    <ul>
+        <!-- オブジェクトも描画できる -->
+        <li v-for="value in object">{{ value }}</li>
+        <hr>
+    </ul>
+
+    <ul>
+        <!-- 第二引数にキー、第三引数にインデックスを取ることができる -->
+        <li v-for="(value, k, i) in object">{{ i }}:{{ k }}:{{ value }}</li>
+        <hr>
+    </ul>
+
+    <template v-for="(value, k, i) in object">
+        <ul>
+            <!-- templateタグで描画することもできる -->
+            <li>{{ i }}:{{ k }}:{{ value }}</li>
+            <hr>
+        </ul>
+    </template>
+
+    <ul>
+        <!-- 整数値を繰り返すこともできる -->
+        <li v-for="n in 10">{{ n }}</li>
+        <hr>
+    </ul>
+
+    <ul>
+        <!-- 整数値を繰り返すこともできる -->
+        <li v-for="n of 10">{{ n }}</li>
+        <hr>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            fruits: ['りんご', 'バナナ', 'ぶどう'],
+            object: {
+            firstName: '太郎',
+            lastName: '山田',
+            age: 25,
+            }
+        },
+    })
+
+</script>
+</body>
+</html>

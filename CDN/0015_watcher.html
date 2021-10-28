@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>counter : {{ counter }}</p>
+        <button @click="counter += 1">+1</button>
+        <p>computed : {{ lessThanThree }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                counter: 0,
+            },
+            computed: {
+                lessThanThree: function() {
+                    return this.counter > 3 ? '3より上' : '3以下'
+                }
+            },
+            watch: {
+                /*
+                ウォッチャーを使って特定のデータが変わったときに特定の処理をする
+                非同期処理はreturnを書くことができない
+                つまりcomputedは非同期処理が不可能
+                頻繁に使う機能ではない
+                */
+                
+                // this.counterをウォッチ(変化したとき)
+                counter: function() {
+                    // 非同期処理の中でthisは使用できないためvmに置き換え
+                    var vm = this
+                    setTimeout(function(){
+                        // this.counterを0にする
+                        vm.counter = 0
+                    }, 3000)
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

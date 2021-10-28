@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>counter : {{ counter }}</p>
+        <button @click="counter += 1">+1</button>
+        
+        <p>otherCounter : {{ otherCounter}}</p>
+        <button @click="otherCounter += 1">+1</button>
+        <p>三項演算子 : {{ counter > 3 ? '3より上' : '3以下' }}</p>
+        <p>computed : {{ lessThanThreeComputed }}</p>
+        <p>methods : {{ lessThanThreeMethod() }}</p>
+    </div>
+
+    <script>
+        /*
+        超重要：computedとmethodsの違い
+        computedは依存関係に基づいてキャッシュされる
+        つまりthis.counterなどの参照先が変わるたびに実行される
+        動的なプロパティを使用する場合にはcomputedプロパティを使うようにする
+
+        methodsはレンダリングされるたびに実行される
+        つまりlessThanThreeMethodはテンプレートの中身が変わるたびに呼び出される
+        */
+        new Vue({
+            el: "#app",
+            // dataは初期値として扱う(動的に表現できない)
+            data: {
+                counter: 0,
+                otherCounter: 0,
+            },
+            // computed(算出プロパティとも呼ぶ) : 動的なプロパティを使うときに用いるもの
+            computed: {
+                lessThanThreeComputed: function() {
+                    console.log('Computed')
+                    return this.counter > 3 ? '3より上' : '3以下'
+                }
+            },
+            methods: {
+                lessThanThreeMethod: function() {
+                    console.log('Methods')
+                    return this.counter > 3 ? '3より上' : '3以下'
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

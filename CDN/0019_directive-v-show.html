@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <button @click="ok = !ok">ボタン</button>
+    <!-- if : タグごと消す -->
+    <p v-if="ok">If</p>
+    
+    <!-- show : styleのdisplayがnoneになる -->
+    <p v-show="ok">Show</p>
+
+
+    <!-- なぜv-showがあるか : 先に読み込むのでv-ifより軽い -->
+    <!-- v-ifはtrueかfalseを判定するため大規模になると遅い -->
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            ok: true,
+        },
+    })
+
+</script>
+</body>
+</html>
