@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app1">
+    <p>{{ message }}</p>
+    <p>{{ name }}</p>
+    
+    <!-- このボタンは動作しているがnameがリアクティブなプロパティじゃないため反映されない -->
+    <button @click=" name = 'ボタンからnameを変更' ">変更</button>
+</div>
+
+<script>
+    /*
+    外側からできないこと
+    ・新しいプロパティを追加すること
+
+    厳密には追加できる
+    ただ、ゲッターとセッターが用意されないため、vue.jsのリアクティブな機能が使えない
+    console.logでvmを見てみるとmessageにはgetter, setterがあるがnameにはない
+
+    vueの挙動
+    dataを読み込む→プロパティごとにウォッチャーを作る→リアクティブシステムが使える
+    */
+    var vm = new Vue({
+        el: "#app1",
+        data: {
+            message: 'メッセージです',
+        },
+    })
+    
+    vm.message = '変えました'
+    vm.name = 'よしぴー'
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app1">
+    <p>{{ message }}</p>
+    <p>{{ name }}</p>
+    <p>{{ myData }}</p>
+    <!-- このボタンは動作しているがnameがリアクティブなプロパティじゃないため反映されない -->
+    <button @click=" name = 'ボタンからnameを変更' ">変更</button>
+</div>
+
+<div id="app2"></div>
+
+<div id="app3"></div>
+<script>
+    /*
+    外側で定義したdata変数をvueインスタンスのdataに定義できる
+    */
+    var data = {
+        message: 'メッセージです',
+        name: 'hogehoge',
+    }
+
+    var vm = new Vue({
+        // 上で定義したdataを代入できる
+        data: data,
+        computed: {
+            myData: function() {
+                // 自分のインスタンスにアクセスするときはthisを使う
+                return this.$data;
+            }
+        }
+    })
+
+    console.log('data === vm.$data', data === vm.$data)
+
+    // $mountとは:エレメントプロパティ(elプロパティ)を後付けできる
+    vm.$mount('#app1')
+
+
+    new Vue({
+        data: {
+            name: 'よしぴー',
+        },
+        // templateプロパティ : 文字列をhtmlにして表示させる
+        template: '<h1>こんにちは、{{ name }}</h1>'
+    // $mountはここでも使える
+    }).$mount('#app2')
+
+
+    new Vue({
+        data: {
+            name: 'よしぴー',
+        },
+        // render関数とは : templateと同じくhtmlを描画する関数
+        render: function(createElement) {
+            // 仮想DOM(=オブジェクト)
+            console.log(createElement('h1', 'こんばんは、' + this.name))
+
+            // 必ずreturnを取る
+            // 第一引数はタグ、第二引数はタグの中に入れたい文字列
+            return createElement('h1', 'こんばんは、' + this.name)
+        }
+    }).$mount('#app3')
+
+    // render関数とやっていることは同じだDOM要素
+    var dom = document.createElement('div')
+
+    /*
+    仮想DOMの必要性
+    前提としてDOMは直接編集するため非常に遅い(パフォーマンスが落ちる)
+    部分的に変更したいので仮想DOMを使っている
+    */
+</script>
+</body>
+</html>

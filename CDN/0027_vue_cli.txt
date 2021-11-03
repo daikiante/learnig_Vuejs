@@ -1,0 +1,7 @@
+1, Vue.jsのcliをインストール
+npm intall -g @vue/cli
+
+2,vueプロジェクトを開始する
+vue create [プロジェクト名]
+
+3,

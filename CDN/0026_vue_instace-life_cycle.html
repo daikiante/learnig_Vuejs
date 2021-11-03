@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app1">
+    <p>{{ message }}</p>
+    <p>{{ name }}</p>
+    <p>{{ myData }}</p>
+    <!-- このボタンは動作しているがnameがリアクティブなプロパティじゃないため反映されない -->
+    <button @click=" name = '太郎さん' ">名前を変更</button>
+    <button @click="destroy">Vueインスタンスを破壊</button>
+</div>
+
+<script>
+    /*
+    外側で定義したdata変数をvueインスタンスのdataに定義できる
+    */
+    var data = {
+        message: 'メッセージです',
+        name: 'hogehoge',
+    }
+    var vm = new Vue({
+        // 上で定義したdataを代入できる
+        data: data,
+        computed: {
+            myData: function() {
+                // 自分のインスタンスにアクセスするときはthisを使う
+                return this.$data;
+            }
+        },
+        beforeCreate: function() {
+            console.log('beforeCreate')
+        },
+        created: function() {
+            console.log('created')
+        },
+        beforeMount: function() {
+            console.log('beforeMount')
+        },
+        mounted: function() {
+            console.log('mounted')
+        },
+        beforeUpdate: function() {
+            console.log('beforeUpdate')
+        },
+        updated: function() {
+            console.log('updated')
+        },
+        beforeDestroy: function() {
+            console.log('beforeDestroy')
+        },
+        destroyed: function() {
+            console.log('destroyed')
+        },
+        methods: {
+            destroy: function() {
+                // インスタンスを破壊
+                this.$destroy()
+            }
+        }
+    }).$mount('#app1')
+
+
+</script>
+</body>
+</html>
