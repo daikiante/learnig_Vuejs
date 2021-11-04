@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue.js</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+</div>
+
+<script>
+    /*
+    component : 再利用させるもの
+    */
+    new Vue({
+        el: '#app',
+        data: {
+            number: 12,
+        },
+        template: '<p>いいね( {{number}} )</p>'
+    })
+
+
+</script>
+</body>
+</html>

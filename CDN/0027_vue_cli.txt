@@ -4,4 +4,7 @@ npm intall -g @vue/cli
 2,vueプロジェクトを開始する
 vue create [プロジェクト名]
 
-3,
+buildするとき
+1, コマンドでビルドする
+npm run build
+dist/が作成される
