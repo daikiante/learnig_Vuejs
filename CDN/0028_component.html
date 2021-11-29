@@ -9,18 +9,36 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
 </div>
 
 <script>
     /*
     component : 再利用させるもの
+
+    使い方
+    ・Vue.componentでコンポーネントとして登録する
+    ・このとき第一引数にコンポーネント名、第二引数に定義内容
+    ・コンポーネントの中でdataは関数にする必要があり、returnで定義したいプロパティ(変数とか)をオブジェクト形式(辞書型)にする
+
+    dataを関数にする理由
+    ・プロパティを登録してしまうと、すべてのコンポーネントが同じプロパティを参照してしまうため
+    ・いいねボタンを例に上げると、一つのいいねをインクリメントした際に、他のnumberも+1が反映されてしまう
     */
-    new Vue({
-        el: '#app',
-        data: {
-            number: 12,
+    Vue.component('my-component', {
+        data: function() {
+            return {
+                number: 12
+            }
         },
         template: '<p>いいね( {{number}} )</p>'
+    })
+
+    new Vue({
+        el: '#app',
     })
 
 
